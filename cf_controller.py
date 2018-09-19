@@ -2,9 +2,6 @@ from player import *
 from grid import *
 from view import *
 
-def player_won():
-    return False
-
 run_program = True
 while run_program:
 
@@ -25,15 +22,12 @@ while run_program:
     run_game = True
     while run_game:
         for p in player_array:
-            position = set_disc_position()
-            grid.drop_disc(position)
+            position = set_disc_position(p.name)
+            grid.drop_disc(position, p.color.value)
             # todo: show Konsole oder GUI
-            if (player_won()):
+            if grid.calc_if_won(p.color.value):
                 run_game = False
+                print(p.name + " hat gewonnen!")
                 break
 
     print("Vorbei")
-
-
-
-
