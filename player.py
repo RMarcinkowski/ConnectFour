@@ -1,6 +1,7 @@
 from enum import Enum
 
 class Color(Enum):
+    WHITE = 0
     RED = 1
     GREEN = 2
     BLUE = 3
@@ -28,17 +29,15 @@ class Player():
         if isinstance(intelligence, Intelligence):
             self.__intelligence = intelligence
 
-    # getter
-    def __get_name(self):
+    # properties
+    @property
+    def name(self):
         return self.__name
 
-    def __get_color(self):
+    @property
+    def color(self):
         return self.__color
 
-    def __get_intelligence(self):
+    @property
+    def intelligence(self):
         return self.__intelligence
-
-    # properties
-    Name = property(__get_name, None)
-    Color = property(__get_color, None)
-    Intelligence = property(__get_intelligence, None)
