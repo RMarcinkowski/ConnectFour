@@ -2,9 +2,10 @@ from enum import Enum
 
 class Color(Enum):
     WHITE = 0
-    RED = 1
-    GREEN = 2
-    BLUE = 3
+    BLUE = 1
+    RED = 2
+    GREEN = 3
+
 
 
 class Intelligence(Enum):
