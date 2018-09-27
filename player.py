@@ -1,10 +1,12 @@
 from enum import Enum
+import random
 
 class Color(Enum):
     WHITE = 0
     BLUE = 1
     RED = 2
     GREEN = 3
+    YELLOW = 4
 
 
 
@@ -42,3 +44,23 @@ class Player():
     @property
     def intelligence(self):
         return self.__intelligence
+
+
+    def AI_set_drop(self, grid):
+        if self.intelligence == Intelligence.EASY:
+            return self.__AI_easy_drop(grid)
+        elif self.intelligence == Intelligence.NORMAL:
+            return self.__AI_normal_drop(grid)
+        else:
+            return self.__AI_hard_drop(grid)
+
+
+    def __AI_easy_drop(self, grid):
+        x = random.randrange(len(grid))
+        return x
+
+    def __AI_normal_drop(self, grid):
+        raise NotImplementedError()
+
+    def __AI_hard_drop(self, grid):
+        raise NotImplementedError()
