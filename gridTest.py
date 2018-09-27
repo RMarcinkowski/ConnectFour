@@ -3,7 +3,7 @@ from grid import *
 
 class drop_disc_test(unittest.TestCase):
     def testcase_00(self):
-        g = Grid()
+        g = Grid(6,7)
         grid = g.tolist()
         for row in grid:
             for cell in row:
@@ -21,11 +21,11 @@ class drop_disc_test(unittest.TestCase):
         g.drop_disc(2, 1)
         g.drop_disc(2, 1)
         g.drop_disc(2, 1)
-        self.assertRaises(IndexError, g.drop_disc, 2, 1)
+        self.assertFalse(g.drop_disc(2,1))
 
 class calc_if_won_test(unittest.TestCase):
     def testcase_00(self):
-        g = Grid()
+        g = Grid(6,7)
         g.drop_disc(0, 1) # column: 0, color: 1
         g.drop_disc(1, 1)
         g.drop_disc(1, 1)
