@@ -51,10 +51,11 @@ class Grid():
 
 
     def calc_if_won(self, num):
+        if self.__check_rows(self.__grid, num) or self.__check_columns(self.__grid.transpose(), num) or self.__check_diagonal(num):
+            return True
         if self.__turn_count == self.num_columns * self.num_rows:
             return "draw"
-        return self.__check_rows(self.__grid, num) or self.__check_columns(self.__grid.transpose(), num) or self.__check_diagonal(num)
-
+        return False
 
     def __row_wins(self, row, num):
         num_count = 0
