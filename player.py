@@ -1,4 +1,5 @@
 from enum import Enum
+from medium_ai import *
 import random
 
 class Color(Enum):
@@ -56,11 +57,15 @@ class Player():
 
 
     def __AI_easy_drop(self, grid):
-        x = random.randrange(len(grid))
+        x = random.randrange(len(grid.tolist()))
         return x
 
     def __AI_normal_drop(self, grid):
-        raise NotImplementedError()
+        b = Board()
+        b.convert(grid.get_grid(), self.color.value)
+        move = b.best()
+        return move
+
 
     def __AI_hard_drop(self, grid):
         raise NotImplementedError()
