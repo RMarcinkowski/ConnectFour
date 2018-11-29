@@ -6,7 +6,7 @@ from player import *
 rows = 6
 columns = 7
 g = Grid(rows,columns)
-players = [Player("Ruben", Color.BLUE, Intelligence.PLAYER), Player("Tja! Ruben", Color.RED, Intelligence.EASY)]
+players = [Player("Ruben", Color.BLUE, Intelligence.PLAYER), Player("Tja! Ruben", Color.RED, Intelligence.NORMAL)]
 
 
 CELL_SIZE = 75
@@ -48,14 +48,15 @@ def on_mouse_down(pos):
             if CELL_SIZE * i < xpos < CELL_SIZE * (i + 1):
                 g.drop_disc(i, players[t].color.value)
                 break
-        clock.schedule_unique(allow_mouse, 0.5)
         draw_and_check(t)
+        clock.schedule_unique(allow_mouse, 0.5)
+
 
     t = g.player_turn
     if players[t].intelligence != Intelligence.PLAYER:
         dropped = False
         while not dropped:
-            position = players[t].AI_set_drop(g.tolist())
+            position = players[t].AI_set_drop(g)
             dropped = g.drop_disc(position, players[t].color.value)
         draw_and_check(t)
 
