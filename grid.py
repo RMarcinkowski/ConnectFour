@@ -85,7 +85,7 @@ class Grid():
 
     def __check_diagonal(self, num):
         for i in range(self.__columns-3):
-            if self.__row_wins(self.__grid.diagonal(i), num):
+            if self.__row_wins(self.__grid.diagonal(-i), num):
                 return True
             if self.__row_wins(self.__grid[:, ::-1].diagonal(i), num):
                 return True
