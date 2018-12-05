@@ -40,17 +40,6 @@ def draw():
 
 
 def on_mouse_down(pos):
-    xpos = pos[0]
-    if 0 < xpos < CELL_SIZE * g.num_columns:
-        pg.event.set_blocked(pg.MOUSEBUTTONDOWN)
-        t = g.player_turn
-        for i in range(0, g.num_columns + 1):
-            if CELL_SIZE * i < xpos < CELL_SIZE * (i + 1):
-                g.drop_disc(i, players[t].color.value)
-                break
-        draw_and_check(t)
-        clock.schedule_unique(allow_mouse, 0.5)
-
 
     t = g.player_turn
     if players[t].intelligence != Intelligence.PLAYER:
@@ -59,6 +48,26 @@ def on_mouse_down(pos):
             position = players[t].AI_set_drop(g)
             dropped = g.drop_disc(position, players[t].color.value)
         draw_and_check(t)
+    else:
+        xpos = pos[0]
+        if 0 < xpos < CELL_SIZE * g.num_columns:
+            pg.event.set_blocked(pg.MOUSEBUTTONDOWN)
+            t = g.player_turn
+            for i in range(0, g.num_columns + 1):
+                if CELL_SIZE * i < xpos < CELL_SIZE * (i + 1):
+                    g.drop_disc(i, players[t].color.value)
+                    break
+            draw_and_check(t)
+            clock.schedule_unique(allow_mouse, 0.5)
+
+
+    """t = g.player_turn
+    if players[t].intelligence != Intelligence.PLAYER:
+        dropped = False
+        while not dropped:
+            position = players[t].AI_set_drop(g)
+            dropped = g.drop_disc(position, players[t].color.value)
+        draw_and_check(t)"""
 
 
 def draw_and_check(t):

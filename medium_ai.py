@@ -8,9 +8,9 @@ class Board:
     nodes = {}
 
     def __init__(self, other=None):
-        self.player = 'X'
-        self.opponent = 'O'
-        self.empty = '.'
+        self.player = 1
+        self.opponent = 2
+        self.empty = 0
         self.width = 7
         self.height = 6
         self.fields = {}
@@ -267,7 +267,7 @@ class Board:
         string = ''
         for y in range(self.height):
             for x in range(self.width):
-                string += ' ' + self.fields[self.width - 1 - x, self.height - 1 - y]
+                string += ' ' + str(self.fields[self.width - 1 - x, self.height - 1 - y])
             string += "\n"
         return string
 
@@ -275,18 +275,16 @@ class Board:
         string = ''
         for y in range(self.height):
             for x in range(self.width):
-                string += ' ' + self.fields[x, self.height - 1 - y]
+                string += ' ' + str(self.fields[x, self.height - 1 - y])
             string += "\n"
         return string
 
     def convert(self, grid, num):
         for y in range(self.height):
             for x in range(self.width):
-                if grid[self.height-1-y ,x] == 0:
-                    self.fields[x, y] = self.empty
-                if grid[self.height - 1 - y, x] == 1:
-                    self.fields[x, y] = self.player
-                if grid[self.height - 1 - y, x] == 2:
-                    self.fields[x, y] = self.opponent
+                self.fields[x, y] = grid[self.height-1-y ,x]
+
+        if num == 1:
+            self.player, self.opponent = 1, 2
         if num == 2:
-            self.player, self.opponent = 'O', 'X'
+            self.player, self.opponent = 2, 1

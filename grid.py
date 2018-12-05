@@ -24,6 +24,8 @@ class Grid():
     def tolist(self):
         return self.__grid.tolist()
 
+    def get_grid(self):
+        return self.__grid
 
     def reset(self):
         self.__turn_count = 0
@@ -53,8 +55,13 @@ class Grid():
     def calc_if_won(self, num):
         if self.__check_rows(self.__grid, num) or self.__check_columns(self.__grid.transpose(), num) or self.__check_diagonal(num):
             return True
-        if self.__turn_count == self.num_columns * self.num_rows:
+        if self.__tied():
             return "draw"
+        return False
+
+    def __tied(self):
+        if self.__turn_count == self.num_columns * self.num_rows:
+            return True
         return False
 
     def __row_wins(self, row, num):
