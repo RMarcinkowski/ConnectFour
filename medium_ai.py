@@ -68,8 +68,8 @@ class Board:
                     if not empty == None:
                         break
                     empty = (x, y)
-            if pieces == 3:
-                winpositions["{0},{1}".format(x, y)] = True
+                if pieces == 3:
+                    winpositions["{0},{1}".format(x, y)] = True
         return winpositions
 
     def __winlines(self, player):
